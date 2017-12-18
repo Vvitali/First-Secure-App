@@ -1,0 +1,37 @@
+
+<div id='encription'>
+	<input type="text" id="data">
+	<button id="enc">Encrypt</button>
+</div>
+<br>
+<br>
+<div id='decription'>
+	<input type="text" id="enData">
+	<button id="dec">Decrypt</button>
+</div>
+<script
+src="https://code.jquery.com/jquery-3.2.1.min.js"
+integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function(){
+		console.log("Ready!")
+		$("#enc").click(function(){
+			console.log("enc");
+			var data = $("#data").val()
+			$.get("/enc/"+data, function(response){
+				console.log(response);
+				$("#encription").append("<p>"+data+" : "+response+"</p>");
+			})
+		});
+
+		$("#dec").click(function(){
+			console.log("dev");
+			var data = $("#enData").val()
+			$.get("/dec/"+$("#enData").val(), function(response){
+				console.log(response);
+				$("#decription").append("<p>"+data+" : "+response+"</p>");
+			})
+		});
+	});
+</script>
